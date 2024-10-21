@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch and Countdown</title>
+    <script src="script.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Recursos de Test (QUnit) - Descomentar para ejecutar tests -->
+    <!--<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.16.0.css">-->
+    <!--<script src="https://code.jquery.com/qunit/qunit-2.16.0.js"></script>-->
+    <!--<script src="tests.js" defer></script> &lt;!&ndash; Enlace al archivo de tests &ndash;&gt;-->
+</head>
+<body class="bg-gray-100">
+
+<!-- Menú principal para seleccionar modo -->
+<div id="main-menu" class="h-screen flex flex-col justify-center items-center">
+    <div class="flex space-x-4 w-3/4 max-w-lg">
+        <!-- Botón de Stopwatch con flecha verde hacia arriba -->
+        <button id="stopwatch-button" class="w-full py-8 bg-green-500 text-white rounded-lg font-semibold border-4 border-black flex flex-col items-center justify-center">
+            <!-- Flecha SVG verde hacia arriba -->
+            <svg class="h-12 w-12 mb-2 stroke-black" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7-7-7 7"></path> <!-- Flecha hacia arriba -->
+            </svg>
+            <span class="mt-2">Stopwatch</span>
+        </button>
+
+        <!-- Botón de Countdown con flecha roja hacia abajo -->
+        <button id="countdown-button" class="w-full py-8 bg-red-500 text-white rounded-lg font-semibold border-4 border-black flex flex-col items-center justify-center">
+            <!-- Flecha SVG roja hacia abajo -->
+            <svg class="h-12 w-12 mb-2 stroke-black" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7 7 7-7"></path> <!-- Flecha hacia abajo -->
+            </svg>
+            <span class="mt-2">Countdown</span>
+        </button>
+    </div>
+</div>
+
+<!-- Pantalla del cronómetro o cuenta atrás -->
+<div id="timer-screen" class="hidden h-screen flex flex-col justify-center items-center">
+
+    <!-- Visualización del tiempo con un tamaño fijo para el marco -->
+    <div id="time-display" class="w-120 h-24 text-6xl font-bold mb-8 border-4 border-black rounded-lg p-4 flex justify-center items-center">
+        00:00:00<span class="text-2xl">000</span>
+    </div>
+
+    <!-- Teclado numérico para cuenta atrás -->
+    <div id="keypad" class="hidden grid grid-cols-6 gap-4">
+        <!-- Primera fila: Números 0-4 y botón Set -->
+        <button class="numeric-button px-8 py-4 bg-green-500 rounded-lg border-4 border-black">0</button>
+        <button class="numeric-button px-8 py-4 bg-green-500 rounded-lg border-4 border-black">1</button>
+        <button class="numeric-button px-8 py-4 bg-green-500 rounded-lg border-4 border-black">2</button>
+        <button class="numeric-button px-8 py-4 bg-green-500 rounded-lg border-4 border-black">3</button>
+        <button class="numeric-button px-8 py-4 bg-green-500 rounded-lg border-4 border-black">4</button>
+        <button id="set-button" class="px-8 py-4 bg-blue-500 rounded-lg border-4 border-black">Set</button>
+
+        <!-- Segunda fila: Números 5-9 y botón Clear -->
+        <button class="numeric-button px-8 py-4 bg-green-500 rounded-lg border-4 border-black">5</button>
+        <button class="numeric-button px-8 py-4 bg-green-500 rounded-lg border-4 border-black">6</button>
+        <button class="numeric-button px-8 py-4 bg-green-500 rounded-lg border-4 border-black">7</button>
+        <button class="numeric-button px-8 py-4 bg-green-500 rounded-lg border-4 border-black">8</button>
+        <button class="numeric-button px-8 py-4 bg-green-500 rounded-lg border-4 border-black">9</button>
+        <button id="clear-button" class="px-8 py-4 bg-gray-500 rounded-lg border-4 border-black">Clear</button>
+    </div>
+
+    <!-- Botones de control (Start/Pause y Clear) para cronómetro o cuenta atrás -->
+    <div id="controls" class="hidden flex space-x-4 w-3/4 max-w-lg">
+        <button id="start-pause-button" class="w-full py-8 bg-green-500 text-white rounded-lg font-semibold border-4 border-black">Start</button>
+        <button id="reset-button" class="w-full py-8 bg-red-500 text-white rounded-lg font-semibold border-4 border-black">Clear</button>
+    </div>
+
+    <!-- Botón para regresar al menú -->
+    <button id="back-button" class="mt-8 text-blue-500">Back</button>
+</div>
+
+<!-- QUnit test runner -->
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+</body>
+</html>
